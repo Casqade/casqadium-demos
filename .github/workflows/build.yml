@@ -18,6 +18,10 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
 
+    defaults:
+      run:
+        shell: bash
+
     strategy:
       fail-fast: false
 
@@ -75,8 +79,8 @@ jobs:
     - name: Configure CMake
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
-        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+        -DCMAKE_CXX_COMPILER=${{ matrix.include.os.cpp_compiler }}
+        -DCMAKE_C_COMPILER=${{ matrix.include.os.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
         -S ${{ github.workspace }}
 
