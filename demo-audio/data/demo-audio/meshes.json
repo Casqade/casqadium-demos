@@ -1,0 +1,42 @@
+{
+  "car_back" : 
+  {
+    "path" : "meshes/car_back.json"
+  },
+  "cliff" : 
+  {
+    "path" : "meshes/cliff.gltf"
+  },
+  "fshape" : 
+  {
+    "path" : "meshes/fshape.gltf"
+  },
+  "jersey" : 
+  {
+    "path" : "meshes/jersey.gltf"
+  },
+  "road" : 
+  {
+    "path" : "meshes/road.json"
+  },
+  "road_barrier" : 
+  {
+    "path" : "meshes/road_barrier.json"
+  },
+  "saloon_ceiling" : 
+  {
+    "path" : "meshes/saloon_ceiling.json"
+  },
+  "saloon_floor" : 
+  {
+    "path" : "meshes/saloon_floor.json"
+  },
+  "skybox" : 
+  {
+    "path" : "meshes/skybox.gltf"
+  },
+  "tunnel" : 
+  {
+    "path" : "meshes/tunnel.gltf"
+  }
+}

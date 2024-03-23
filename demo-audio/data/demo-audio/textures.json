@@ -1,0 +1,266 @@
+{
+  "car" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/mountains/car.png"
+  },
+  "cliff" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/mountains/cliff.png"
+  },
+  "drunkard_head" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/drunkard/head.png"
+  },
+  "drunkard_leg_left" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/drunkard/leg_left.png"
+  },
+  "drunkard_leg_right" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/drunkard/leg_right.png"
+  },
+  "drunkard_torso" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/drunkard/torso.png"
+  },
+  "engine_body" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/engine/engine.png"
+  },
+  "engine_cylinder" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/engine/cylinder.png"
+  },
+  "jersey" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/mountains/jersey.png"
+  },
+  "mus_banjo1" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/banjo1.png"
+  },
+  "mus_banjo2" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/banjo2.png"
+  },
+  "mus_bass" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/bass.png"
+  },
+  "mus_bottle" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/bottle.png"
+  },
+  "mus_guitar" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/guitar.png"
+  },
+  "mus_perc" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/perc.png"
+  },
+  "mus_piano" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/piano.png"
+  },
+  "mus_vargan" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/vargan.png"
+  },
+  "mus_viola" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/viola.png"
+  },
+  "mus_violin" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/instruments/violin.png"
+  },
+  "roadShadowEast" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/mountains/roadShadow.png"
+  },
+  "roadShadowWest" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : true,
+    "flipVertical" : false,
+    "path" : "textures/mountains/roadShadow.png"
+  },
+  "road_barrier" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/mountains/road_barrier.png"
+  },
+  "road_surface" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/mountains/road_surface.png"
+  },
+  "saloon_ceiling" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/saloon/ceiling.png"
+  },
+  "saloon_floor" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/saloon/floor.png"
+  },
+  "saloon_wall_base" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/saloon/wall_base.png"
+  },
+  "saloon_wall_door" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/saloon/wall_door.png"
+  },
+  "saloon_wall_window" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/saloon/wall_window.png"
+  },
+  "skybox_desert" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/skybox/desert.png"
+  },
+  "skybox_mountains" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/skybox/mountains.png"
+  },
+  "tunnelBg" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/mountains/tunnelBg.png"
+  },
+  "tunnelEast" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/mountains/tunnelEast.png"
+  },
+  "tunnelWest" : 
+  {
+    "clamp" : false,
+    "filter" : false,
+    "flipHorizontal" : false,
+    "flipVertical" : false,
+    "path" : "textures/mountains/tunnelWest.png"
+  }
+}
