@@ -31,12 +31,10 @@ jobs:
 
         exclude:
           - os: ubuntu-latest
-            compiler.c: cl
-            compiler.cpp: cl
+            compiler: {cpp: cl, c: cl}
 
 #          - os: macos-latest
-#            compiler.c: cl
-#            compiler.cpp: cl
+#            compiler: {cpp: cl, c: cl}
 
 
     steps:
