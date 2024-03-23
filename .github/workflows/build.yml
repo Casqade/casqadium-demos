@@ -27,38 +27,16 @@ jobs:
 
       matrix:
         os: [ubuntu-latest, windows-latest]
-        compiler: [gcc, clang, cl]
-        include:
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-          - os: windows-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: windows-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-
-          - os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-
-#          - os: macos-latest
-#            c_compiler: gcc
-#            cpp_compiler: g++
-#          - os: macos-latest
-#            c_compiler: clang
-#            cpp_compiler: clang++
+        compiler: [ {cpp: g++, c: gcc}, {cpp: clang++, c: clang}, {cpp: cl, c: cl} ]
 
         exclude:
           - os: ubuntu-latest
-            compiler: cl
+            compiler.c: cl
+            compiler.cpp: cl
 
 #          - os: macos-latest
-#            compiler: cl
+#            compiler.c: cl
+#            compiler.cpp: cl
 
 
     steps:
@@ -79,8 +57,8 @@ jobs:
     - name: Configure CMake
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
-        -DCMAKE_CXX_COMPILER=${{ matrix.include.os.cpp_compiler }}
-        -DCMAKE_C_COMPILER=${{ matrix.include.os.c_compiler }}
+        -DCMAKE_CXX_COMPILER=${{ matrix.compiler.cpp }}
+        -DCMAKE_C_COMPILER=${{ matrix.compiler.c }}
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
         -S ${{ github.workspace }}
 
