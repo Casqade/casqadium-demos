@@ -69,7 +69,7 @@ endif()
 include(FetchContent)
 
 FetchContent_Declare(casqadium
-  GIT_REPOSITORY git@github.com:Casqade/casqadium
+  GIT_REPOSITORY https://github.com/Casqade/casqadium
   GIT_TAG        main
   GIT_SHALLOW    TRUE
 )
