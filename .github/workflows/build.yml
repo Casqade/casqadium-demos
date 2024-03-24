@@ -42,7 +42,6 @@ jobs:
 
     - name: Set reusable strings
       id: strings
-      if: matrix.os == 'ubuntu-latest'
       shell: bash
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
