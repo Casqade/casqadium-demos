@@ -54,7 +54,8 @@ jobs:
 
     - name: Configure CMake
       run: >
-        cmake -B $(cygpath -u '${{ steps.strings.outputs.build-output-dir }}')
+        cmake -G'MSYS Makefiles'
+        -B $(cygpath -u '${{ steps.strings.outputs.build-output-dir }}')
         -DCMAKE_CXX_COMPILER=${{ matrix.compiler.cpp }}
         -DCMAKE_C_COMPILER=${{ matrix.compiler.c }}
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
