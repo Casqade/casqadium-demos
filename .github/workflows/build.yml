@@ -42,37 +42,24 @@ jobs:
 
     - name: Set reusable strings
       id: strings
+      if: matrix.os == 'ubuntu-latest'
       shell: bash
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
-    
+
     - name: Install dependencies (Ubuntu)
       if: matrix.os == 'ubuntu-latest'
       shell: bash
       run: |
         sudo apt install -y xorg-dev libasound2-dev
 
-    - name: Detect compilers
-      if: matrix.os == 'windows-latest'
-      shell: bash
-      run: |
-        echo g++ info:
-        g++ --version
-        which g++
-        echo clang++ info:
-        clang++ --version
-        which clang++
-        echo ninja info:
-        ninja --version
-        which ninja
-
     - name: Configure CMake
       run: >
-        cmake -G Ninja -B '${{ steps.strings.outputs.build-output-dir }}'
+        cmake -B $(cygpath -u '${{ steps.strings.outputs.build-output-dir }}')
         -DCMAKE_CXX_COMPILER=${{ matrix.compiler.cpp }}
         -DCMAKE_C_COMPILER=${{ matrix.compiler.c }}
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-        -S '${{ github.workspace }}'
+        -S $(cygpath -u '${{ steps.strings.outputs.build-output-dir }}')
 
     - name: Build
       run: |
