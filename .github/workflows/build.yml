@@ -54,11 +54,12 @@ jobs:
 
     - name: Configure CMake
       run: >
-        cmake -B ${{ steps.strings.outputs.build-output-dir }}
+        cmake -B '${{ steps.strings.outputs.build-output-dir }}'
         -DCMAKE_CXX_COMPILER=${{ matrix.compiler.cpp }}
         -DCMAKE_C_COMPILER=${{ matrix.compiler.c }}
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-        -S ${{ github.workspace }}
+        -S '${{ github.workspace }}'
 
     - name: Build
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{env.BUILD_TYPE}}
+      run: |
+        cmake --build '${{ steps.strings.outputs.build-output-dir }}' --config ${{env.BUILD_TYPE}}
