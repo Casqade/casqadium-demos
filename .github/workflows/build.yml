@@ -62,10 +62,13 @@ jobs:
         echo clang++ info:
         clang++ --version
         which clang++
+        echo ninja info:
+        ninja --version
+        which ninja
 
     - name: Configure CMake
       run: >
-        cmake -B '${{ steps.strings.outputs.build-output-dir }}'
+        cmake -G Ninja -B '${{ steps.strings.outputs.build-output-dir }}'
         -DCMAKE_CXX_COMPILER=${{ matrix.compiler.cpp }}
         -DCMAKE_C_COMPILER=${{ matrix.compiler.c }}
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
