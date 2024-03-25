@@ -11,31 +11,70 @@ on:
     branches:
       - main
 
-env:
-  BUILD_TYPE: Release
-
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-
-    defaults:
-      run:
-        shell: bash
+  build-msvc:
+    runs-on: ${{ matrix.config.os }}
 
     strategy:
       fail-fast: false
 
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        compiler: [ {cpp: g++, c: gcc}, {cpp: clang++, c: clang}, {cpp: cl, c: cl} ]
+        config:
+        - {
+            os: windows-latest,
+#            artifact: "windows-msvc.7z",
+            build_type: "Release",
+            cc: "cl",
+            cxx: "cl"
+          }
 
-        exclude:
-          - os: ubuntu-latest
-#            compiler: {cpp: cl, c: cl}
+    steps:
+    - uses: actions/checkout@v4
 
-#          - os: macos-latest
-#            compiler: {cpp: cl, c: cl}
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
+    - name: Configure CMake
+      run: >
+        cmake
+        -S ${{ github.workspace }}
+        -B ${{ steps.strings.outputs.build-output-dir }}
+        -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
+        -DBUILD_SHARED_LIBS=OFF
+
+    - name: Build
+      run: |
+        cmake 
+        --build ${{ steps.strings.outputs.build-output-dir }}
+        --config ${{ matrix.config.build_type }}
+
+  build-unix:
+    runs-on: ${{ matrix.config.os }}
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        config:
+        - {
+            os: ubuntu-latest,
+#            artifact: "ubuntu-gcc.7z",
+            build_type: "Release",
+            cc: "gcc",
+            cxx: "g++",
+            generators: "Ninja"
+          }
+        - {
+            os: ubuntu-latest,
+#            artifact: "ubuntu-clang.7z",
+            build_type: "Release",
+            cc: "clang",
+            cxx: "clang++",
+            generators: "Ninja"
+          }
 
     steps:
     - uses: actions/checkout@v4
@@ -53,14 +92,14 @@ jobs:
         sudo apt install -y xorg-dev libasound2-dev
 
     - name: Configure CMake
-      run: >
-        cmake -G'MSYS Makefiles'
-        -B $(cygpath -u '${{ steps.strings.outputs.build-output-dir }}')
-        -DCMAKE_CXX_COMPILER=${{ matrix.compiler.cpp }}
-        -DCMAKE_C_COMPILER=${{ matrix.compiler.c }}
-        -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-        -S $(cygpath -u '${{ github.workspace }}')
+      run: |
+        cmake
+        -S ${{ github.workspace }}
+        -B ${{ steps.strings.outputs.build-output-dir }}
+        -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
 
     - name: Build
       run: |
-        cmake --build '${{ steps.strings.outputs.build-output-dir }}' --config ${{env.BUILD_TYPE}}
+        cmake 
+        --build ${{ steps.strings.outputs.build-output-dir }}
+        --config ${{ matrix.config.build_type }}
