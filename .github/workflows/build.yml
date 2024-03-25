@@ -86,10 +86,12 @@ jobs:
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
     - name: Install dependencies (Ubuntu)
-      if: matrix.os == 'ubuntu-latest'
+      if: matrix.config.os == 'ubuntu-latest'
       shell: bash
-      run: |
-        sudo apt install -y xorg-dev libasound2-dev
+      run: >
+        sudo apt install -y
+          xorg-dev
+          libasound2-dev
 
     - name: Configure CMake
       run: >
