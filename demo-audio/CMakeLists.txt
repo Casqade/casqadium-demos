@@ -28,6 +28,10 @@ if(CMAKE_BUILD_TYPE MATCHES "Release")
 
   if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     target_link_options(${TARGET} PUBLIC "/ENTRY:mainCRTStartup")
+    set_target_properties(${TARGET} PROPERTIES
+      CXX_STANDARD_REQUIRED ON
+      CXX_STANDARD 20
+    )
   else()
     target_compile_options(${TARGET} PUBLIC -O2)
   endif()
@@ -38,7 +42,12 @@ if(CMAKE_BUILD_TYPE MATCHES "Release")
 
 else()
 
-  if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    set_target_properties(${TARGET} PROPERTIES
+      CXX_STANDARD_REQUIRED ON
+      CXX_STANDARD 20
+    )
+  else()
     target_compile_options(${TARGET} PUBLIC -Og)
   endif()
 
