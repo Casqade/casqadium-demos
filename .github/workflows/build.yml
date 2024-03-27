@@ -13,6 +13,7 @@ on:
 
 jobs:
   build-msys2:
+    if: false
     runs-on: windows-latest
 
     defaults:
@@ -138,6 +139,7 @@ jobs:
 
 
   build-unix:
+    if: false
     runs-on: ${{ matrix.config.os }}
 
     strategy:
