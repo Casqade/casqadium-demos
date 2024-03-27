@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 
+if(POLICY CMP0091)
+  cmake_policy(SET CMP0091 NEW) 
+endif()
+
 set(TARGET demo-audio)
 set(${TARGET}_VERSION 1.0.0)
 project(${TARGET} VERSION ${${TARGET}_VERSION} LANGUAGES CXX)
@@ -22,6 +26,14 @@ target_sources(${TARGET} PRIVATE
 set_target_properties(${TARGET} PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${${TARGET}_BINARY_PATH}
 )
+
+
+if(${BUILD_SHARED_LIBS})
+  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL" CACHE INTERNAL "" FORCE)
+else()
+  target_link_libraries(${TARGET} PUBLIC -static)
+  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>" CACHE INTERNAL "" FORCE)
+endif()
 
 
 if(CMAKE_BUILD_TYPE MATCHES "Release")
@@ -65,25 +77,6 @@ FetchContent_Declare(casqadium
   GIT_SHALLOW    TRUE
 )
 FetchContent_MakeAvailable(casqadium)
-
-
-if(${BUILD_SHARED_LIBS})
-  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL" CACHE INTERNAL "" FORCE)
-    set_target_properties(casqadium PROPERTIES
-      MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
-    )
-  endif()
-else()
-  target_link_libraries(${TARGET} PUBLIC -static)
-
-  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>" CACHE INTERNAL "" FORCE)
-    set_target_properties(casqadium PROPERTIES
-      MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
-    )
-  endif()
-endif()
 
 
 target_link_libraries(${TARGET} PRIVATE
