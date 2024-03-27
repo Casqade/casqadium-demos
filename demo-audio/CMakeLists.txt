@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.15)
 
 set(TARGET demo-audio)
 set(${TARGET}_VERSION 1.0.0)
@@ -27,11 +27,7 @@ set_target_properties(${TARGET} PROPERTIES
 if(CMAKE_BUILD_TYPE MATCHES "Release")
 
   if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    set_target_properties(${TARGET} PROPERTIES
-      CXX_STANDARD_REQUIRED ON
-      CXX_STANDARD 20
-    )
-
+    target_link_options(${TARGET} PUBLIC "/ENTRY:mainCRTStartup")
   else()
     target_compile_options(${TARGET} PUBLIC -O2)
   endif()
@@ -42,13 +38,7 @@ if(CMAKE_BUILD_TYPE MATCHES "Release")
 
 else()
 
-  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    set_target_properties(${TARGET} PROPERTIES
-      CXX_STANDARD_REQUIRED ON
-      CXX_STANDARD 20
-    )
-
-  else()
+  if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     target_compile_options(${TARGET} PUBLIC -Og)
   endif()
 
@@ -59,10 +49,6 @@ endif()
 
 if(NOT ${BUILD_SHARED_LIBS})
   target_link_libraries(${TARGET} PUBLIC -static)
-
-  if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    target_link_libraries(${TARGET} PRIVATE -static-libgcc -static-libstdc++)
-  endif()
 endif()
 
 
