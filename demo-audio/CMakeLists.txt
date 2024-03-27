@@ -56,24 +56,6 @@ else()
   )
 endif()
 
-if(${BUILD_SHARED_LIBS})
-  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL" CACHE INTERNAL "" FORCE)
-    set_target_properties(${TARGET} PROPERTIES
-      MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
-    )
-  endif()
-else()
-  target_link_libraries(${TARGET} PUBLIC -static)
-
-  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>" CACHE INTERNAL "" FORCE)
-    set_target_properties(${TARGET} PROPERTIES
-      MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
-    )
-  endif()
-endif()
-
 
 include(FetchContent)
 
@@ -83,6 +65,25 @@ FetchContent_Declare(casqadium
   GIT_SHALLOW    TRUE
 )
 FetchContent_MakeAvailable(casqadium)
+
+
+if(${BUILD_SHARED_LIBS})
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL" CACHE INTERNAL "" FORCE)
+    set_target_properties(casqadium PROPERTIES
+      MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
+    )
+  endif()
+else()
+  target_link_libraries(${TARGET} PUBLIC -static)
+
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>" CACHE INTERNAL "" FORCE)
+    set_target_properties(casqadium PROPERTIES
+      MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+    )
+  endif()
+endif()
 
 
 target_link_libraries(${TARGET} PRIVATE
