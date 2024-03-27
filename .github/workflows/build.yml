@@ -108,6 +108,7 @@ jobs:
         echo "build-output-dir=${{ github.workspace }}\build" >> "$GITHUB_OUTPUT"
 
     - name: Configure CMake
+      if: matrix.shared_libs_enabled == 'OFF'
       run: >
         cmake
         -S ${{ github.workspace }}
@@ -116,6 +117,7 @@ jobs:
         -DBUILD_SHARED_LIBS=${{ matrix.shared_libs_enabled }}
 
     - name: Build
+      if: matrix.shared_libs_enabled == 'OFF'
       run: >
         cmake
         --build ${{ steps.strings.outputs.build-output-dir }}
