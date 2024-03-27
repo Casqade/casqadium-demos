@@ -29,12 +29,15 @@ set_target_properties(${TARGET} PROPERTIES
 
 
 if(${BUILD_SHARED_LIBS})
+  set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL" CACHE INTERNAL "" FORCE)
   set_target_properties(${TARGET} PROPERTIES
     MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
   )
 else()
+  set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
   target_link_libraries(${TARGET} PUBLIC -static)
+  target_link_options(${TARGET} PUBLIC "/VERBOSE:LIB")
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>" CACHE INTERNAL "" FORCE)
   set_target_properties(${TARGET} PROPERTIES
     MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
