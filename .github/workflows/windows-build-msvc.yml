@@ -61,6 +61,10 @@ jobs:
         ${{ github.workspace }}\demo-audio\data
         ${{ steps.strings.outputs.build-output-dir }}\bin\demo-audio\${{ matrix.build_type }}\data
 
+    - name: Create editor launch script
+      if: matrix.shared_libs_enabled == 'OFF'
+      run: echo start ./CasqadiumApp.exe --editor > ${{ steps.strings.outputs.build-output-dir }}\bin\demo-audio\${{ matrix.build_type }}\CasqadiumEditor.bat
+
     - name: Upload Build Artifact
       if: matrix.shared_libs_enabled == 'OFF'
       uses: actions/upload-artifact@v4

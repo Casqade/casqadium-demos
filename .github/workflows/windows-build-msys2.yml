@@ -70,12 +70,16 @@ jobs:
         --build ${{ steps.strings.outputs.build-output-dir }}
         --config ${{ matrix.build_type }}
 
+    - name: Create editor launch script
+      if: matrix.shared_libs_enabled == 'OFF'
+      run: echo start ./CasqadiumApp.exe --editor > ${{ steps.strings.outputs.build-output-dir }}\bin\demo-audio\CasqadiumEditor.bat
+
     - name: Upload Build Artifact
       if: matrix.shared_libs_enabled == 'OFF'
       uses: actions/upload-artifact@v4
       with:
         name: 'windows-${{ matrix.config.sys }}-${{ matrix.config.cc }}'
-        path: '${{ github.workspace }}\build\bin'
+        path: '${{ steps.strings.outputs.build-output-dir }}\bin'
         if-no-files-found: error
         compression-level: 9
 
