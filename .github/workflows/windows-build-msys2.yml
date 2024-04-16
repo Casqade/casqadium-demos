@@ -79,7 +79,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 'windows-${{ matrix.config.sys }}-${{ matrix.config.cc }}'
-        path: '${{ steps.strings.outputs.build-output-dir }}\bin'
+        path: '{{ github.workspace }}\build\bin'
         if-no-files-found: error
         compression-level: 9
 
