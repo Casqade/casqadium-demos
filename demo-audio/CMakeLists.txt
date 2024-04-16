@@ -37,7 +37,11 @@ if(${BUILD_SHARED_LIBS})
 else()
   set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
   target_link_libraries(${TARGET} PUBLIC -static)
-  target_link_options(${TARGET} PUBLIC "/VERBOSE:LIB")
+
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_link_options(${TARGET} PUBLIC "/VERBOSE:LIB")
+  endif()
+
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>" CACHE INTERNAL "" FORCE)
   set_target_properties(${TARGET} PROPERTIES
     MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
