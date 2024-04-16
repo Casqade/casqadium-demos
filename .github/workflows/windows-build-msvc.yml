@@ -54,11 +54,11 @@ jobs:
         --build ${{ steps.strings.outputs.build-output-dir }}
         --config ${{ matrix.build_type }}
 
-    - name: Copy demo data into binary dir
+    - name: Move demo data into binary dir
       if: matrix.shared_libs_enabled == 'OFF'
       run: >
-        xcopy /s /i /q
-        ${{ github.workspace }}\demo-audio\data
+        move /y
+        ${{ steps.strings.outputs.build-output-dir }}\bin\demo-audio\data
         ${{ steps.strings.outputs.build-output-dir }}\bin\demo-audio\${{ matrix.build_type }}\data
 
     - name: Create editor launch script
