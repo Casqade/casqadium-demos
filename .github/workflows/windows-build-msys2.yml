@@ -72,7 +72,8 @@ jobs:
 
     - name: Create editor launch script
       if: matrix.shared_libs_enabled == 'OFF'
-      run: echo start ./CasqadiumApp.exe --editor > ${{ steps.strings.outputs.build-output-dir }}\bin\demo-audio\CasqadiumEditor.bat
+      run: |
+        echo start .\demo-audio.exe --editor > ${{ steps.strings.outputs.build-output-dir }}\bin\demo-audio\demo-audio-editor.bat
 
     - name: Upload Build Artifact
       if: matrix.shared_libs_enabled == 'OFF'
